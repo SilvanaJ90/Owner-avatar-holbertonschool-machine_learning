@@ -13,4 +13,4 @@ class Yolo:
         self.model = K.models.load_model(model_path)
         self.anchors = anchors
         with open(classes_path) as f:
-            self.class_names = [class_name.strip() for class_name in f.readlines()]
+            self.class_names = [line.strip() for line in f.readlines()]
