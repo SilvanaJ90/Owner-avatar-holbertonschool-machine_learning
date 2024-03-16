@@ -15,6 +15,12 @@ class Yolo:
         with open(classes_path) as f:
             self.class_names = [line.strip() for line in f.readlines()]
 
+    @staticmethod
+    def sigmoid(x):
+        """
+            Doc
+        """
+        return (1. / (1. + np.exp(-x)))
 
     def process_outputs(self, outputs, image_size):
         """ Doc """
@@ -29,31 +35,29 @@ class Yolo:
             t_xy = output[..., :2]
             t_wh = output[..., 2:4]
 
-            obj_prob = output[..., 4]
-            class_prob = output[..., 5:]
+            sigmoid_conf = self.sigmoid(output[..., 4])
+            sigmoid_prob = self.sigmoid(output[..., 5:])
 
-            c_y = np.arange(g_h).reshape(-1, 1, 1)
-            c_x = np.arange(g_w).reshape(1, -1, 1)
+            box_conf = np.expand_dims(sigmoid_conf, axis=-1)
+            box_class_prob = sigmoid_prob
 
-            p_wh = anchors * np.exp(t_wh)
-            p_wh[..., 0] *= image_size[1] / self.model.input.shape[1]
-            p_wh[..., 1] *= image_size[0] / self.model.input.shape[2]
+            box_confidences.append(box_conf)
+            box_class_probs.append(box_class_prob)
 
-            b_y = (1 / (1 + np.exp(-t_xy[..., 1]))) + c_y
-            b_x = (1 / (1 + np.exp(-t_xy[..., 0]))) + c_x
-            b_y /= g_h
-            b_x /= g_w
+            b_wh = anchors * np.exp(t_wh)
+            b_wh /= self.model.input.shape.as_list()[1:3]
 
-            b_h = p_wh[..., 1] / 2
-            b_w = p_wh[..., 0] / 2
+            grid = np.tile(np.indices(
+                (g_w, g_h)).T,
+                anchors.shape[0]).reshape((g_h, g_w) + anchors.shape)
 
-            x1 = (b_x - b_w) * image_size[1]
-            y1 = (b_y - b_h) * image_size[0]
-            x2 = (b_x + b_w) * image_size[1]
-            y2 = (b_y + b_h) * image_size[0]
+            b_xy = (self.sigmoid(t_xy) + grid) / [g_w, g_h]
 
-            boxes.append(np.stack([x1, y1, x2, y2], axis=-1))
-            box_confidences.append(obj_prob[..., np.newaxis])
-            box_class_probs.append(class_prob)
+            b_xy1 = b_xy - (b_wh / 2)
+            b_xy2 = b_xy + (b_wh / 2)
+            box = np.concatenate((b_xy1, b_xy2), axis=-1)
+            box *= np.tile(np.flip(image_size, axis=0), 2)
+
+            boxes.append(box)
 
         return boxes, box_confidences, box_class_probs
