@@ -38,7 +38,7 @@ For the following main files, please use these images:
 
 golden_gate.jpg:
 
-![image](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2019/9/d714b5d5b0e34b796e79.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20240317%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20240317T235953Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=021c3727060d623333ee2abc35841b043f5cb56cee59d177a4c33398c73b9e75)
+![image](https://upload.wikimedia.org/wikipedia/commons/f/ff/2010_Golden_Gate_Bridge.jpg)
 
 
-![image](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2019/9/f752f0326ffe1f8af36e.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20240317%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20240317T235953Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=754259df64e8b41832b07cb623a7b392bcefb5454cf71412ab237430a46dadde)
+![image](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/VanGogh-starry_night.jpg/962px-VanGogh-starry_night.jpg)
