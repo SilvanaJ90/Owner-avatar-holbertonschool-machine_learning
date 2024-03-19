@@ -14,16 +14,18 @@ def determinant(matrix):
         Returns: the determinant of matrix
 
     """
-    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
+    if not isinstance(
+        matrix, list) or not all(isinstance(
+            row, list) for row in matrix):
         raise TypeError("matrix must be a list of lists")
     if len(matrix) == 1 and len(matrix[0]) == 0:
         return 1
     for i in matrix:
         if len(i) != len(matrix):
             raise ValueError("matrix must be a square matrix")
-    
+
     num_rows = len(matrix)
-    
+
     # Base case: 0x0 matrix
     if num_rows == 0:
         return 1
@@ -40,7 +42,7 @@ def determinant(matrix):
         d = matrix[1][1]
         det = (a * d) - (b * c)
         return det
-    
+
     # For a 3×3 Matrix
     if num_rows == 3:
         a = matrix[0][0]
@@ -52,7 +54,9 @@ def determinant(matrix):
         g = matrix[2][0]
         h = matrix[2][1]
         i = matrix[2][2]
-        det = (a * (e * i - f * h)) - (b * (d * i - f * g)) + (c * (d * h - e * g))
+        det = (a * (e * i - f * h)) - \
+              (b * (d * i - f * g)) + \
+              (c * (d * h - e * g))
         return det
 
     # For larger matrices
