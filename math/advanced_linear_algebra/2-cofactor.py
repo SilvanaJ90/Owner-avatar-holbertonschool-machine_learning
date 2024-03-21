@@ -30,11 +30,10 @@ def cofactor(matrix):
     minor_matrix = minor(matrix)
     cofactor_matrix = []
 
-    for i in range(num_rows):
+    for i in range(len(minor_matrix)):
         row = []
-        for j in range(num_rows):
-            minor_matrix = minor(matrix)
-            row.append((-1) ** (i + j) * minor_matrix)
+        for j in range(len(minor_matrix[i])):
+            row.append((-1) ** (i + j) * minor_matrix[i][j])
         cofactor_matrix.append(row)
 
     return cofactor_matrix
