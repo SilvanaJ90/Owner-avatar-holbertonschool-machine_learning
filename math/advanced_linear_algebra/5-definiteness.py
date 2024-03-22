@@ -21,6 +21,9 @@ def definiteness(matrix):
     if not isinstance(matrix, np.ndarray):
         raise TypeError("matrix must be a numpy.ndarray")
 
+    if matrix.ndim < 2:
+        matrix = np.atleast_2d(matrix)
+
     if not np.array_equal(matrix, matrix.T):
         return None  # Matriz no es simétrica
 
@@ -35,7 +38,7 @@ def definiteness(matrix):
         return "Positive semi-definite"
     elif positive_eigenvalues == 0:
         return "Negative definite"
-    elif positive_eigenvalues == 1 and zero_eigenvalues == matrix.shape[0] - 1:
+    elif positive_eigenvalues == 1:
         return "Indefinite"
     else:
         return "Negative semi-definite"
