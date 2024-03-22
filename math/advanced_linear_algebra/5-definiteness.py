@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 """   that calculates the definiteness of a matrix:: """
-cofactor = __import__('2-cofactor').cofactor
-determinant = __import__('0-determinant').determinant
-adjugate = __import__('3-adjugate').adjugate
 import numpy as np
 
 
