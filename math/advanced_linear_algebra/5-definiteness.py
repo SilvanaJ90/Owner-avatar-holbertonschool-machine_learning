@@ -38,7 +38,9 @@ def definiteness(matrix):
         return "Positive semi-definite"
     elif positive_eigenvalues == 0:
         return "Negative definite"
-    elif positive_eigenvalues == 1:
+    elif positive_eigenvalues == 1 and np.all(np.isclose(eigenvalues, eigenvalues[0])):
         return "Indefinite"
-    else:
+    elif positive_eigenvalues <= 1 and np.all(np.isclose(eigenvalues, eigenvalues[-1])):
         return "Negative semi-definite"
+    else:
+        return None
