@@ -21,21 +21,21 @@ def definiteness(matrix):
     if not isinstance(matrix, np.ndarray):
         raise TypeError("matrix must be a numpy.ndarray")
 
-    if matrix.size == 0 or matrix.shape[0] != matrix.shape[1]:
-        return None
+    if not np.array_equal(matrix, matrix.T):
+        return None  # Matriz no es simétrica
 
     eigenvalues, _ = np.linalg.eig(matrix)
-    num_pos = np.sum(eigenvalues > 0)
-    num_neg = np.sum(eigenvalues < 0)
-    num_zero = np.sum(np.isclose(eigenvalues, 0))
 
-    if num_pos == matrix.shape[0]:
+    positive_eigenvalues = np.sum(eigenvalues > 0)
+    zero_eigenvalues = np.sum(eigenvalues == 0)
+
+    if positive_eigenvalues == matrix.shape[0]:
         return "Positive definite"
-    elif num_pos > 0 and num_zero > 0:
+    elif positive_eigenvalues + zero_eigenvalues == matrix.shape[0]:
         return "Positive semi-definite"
-    elif num_neg == matrix.shape[0]:
+    elif positive_eigenvalues == 0:
         return "Negative definite"
-    elif num_neg > 0 and num_zero > 0:
-        return "Negative semi-definite"
-    else:
+    elif positive_eigenvalues == 1 and zero_eigenvalues == matrix.shape[0] - 1:
         return "Indefinite"
+    else:
+        return "Negative semi-definite"
