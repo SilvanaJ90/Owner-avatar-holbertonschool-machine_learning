@@ -18,18 +18,6 @@ def definiteness(matrix):
 
     """
 
-    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
-        raise TypeError("matrix must be a list of lists")
-
-    if len(matrix) == 0:
-        return 1  # Empty matrix has determinant 1
-
-    if len(matrix) != len(matrix[0]):
-        raise ValueError("matrix must be a square matrix")
-
-    return np.linalg.det(matrix)
-
-def definiteness(matrix):
     if not isinstance(matrix, np.ndarray):
         raise TypeError("matrix must be a numpy.ndarray")
 
