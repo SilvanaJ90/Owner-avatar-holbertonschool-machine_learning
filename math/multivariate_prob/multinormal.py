@@ -15,7 +15,8 @@ class MultiNormal:
             raise ValueError("data must contain multiple data points")
 
         self.mean = np.mean(data, axis=1).reshape(-1, 1)
-        self.cov = np.dot(data - self.mean, (data - self.mean).T) / (data.shape[1] - 1)
+        self.cov = np.dot(data - self.mean, (
+            data - self.mean).T) / (data.shape[1] - 1)
 
     @staticmethod
     def mean_cov(X):
