@@ -17,13 +17,15 @@ class MultiNormal:
             data - self.mean, (data - self.mean).T) / (data.shape[1] - 1)
 
     def pdf(self, x):
-        """ Doc """
         if not isinstance(x, np.ndarray):
             raise TypeError("x must be a numpy.ndarray")
-        if x.shape != (self.mean.shape[0], 1):
+        if x.ndim != 2 or x.shape != (self.mean.shape[0], 1):
             raise ValueError(f"x must have the shape ({self.mean.shape[0]}, 1)")
-        
+
         d = self.mean.shape[0]
         exponent = -0.5 * np.dot(np.dot((x - self.mean).T, np.linalg.inv(self.cov)), (x - self.mean))
-        coef = 1 / ((2 * np.pi) ** (d / 2) * np.sqrt(np.linalg.det(self.cov)))
-        return coef * np.exp(exponent)
+        coefficient = 1 / ((2 * np.pi) ** (d / 2) * np.sqrt(np.linalg.det(self.cov)))
+        pdf_value = coefficient * np.exp(exponent)
+
+        return pdf_value
+
