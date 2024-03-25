@@ -18,27 +18,33 @@ def definiteness(matrix):
 
     """
 
+    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
+        raise TypeError("matrix must be a list of lists")
+
+    if len(matrix) == 0:
+        return 1  # Empty matrix has determinant 1
+
+    if len(matrix) != len(matrix[0]):
+        raise ValueError("matrix must be a square matrix")
+
+    return np.linalg.det(matrix)
+
+def definiteness(matrix):
     if not isinstance(matrix, np.ndarray):
         raise TypeError("matrix must be a numpy.ndarray")
 
-    if matrix.ndim < 2:
-        matrix = np.atleast_2d(matrix)
-
-    if not np.array_equal(matrix, matrix.T):
-        return None  # Matriz no es simétrica
+    if matrix.ndim != 2 or matrix.shape[0] != matrix.shape[1]:
+        return None
 
     eigenvalues, _ = np.linalg.eig(matrix)
 
-    positive_eigenvalues = np.sum(eigenvalues > 0)
-    zero_eigenvalues = np.sum(eigenvalues == 0)
-
-    if positive_eigenvalues == matrix.shape[0]:
+    if all(eigval > 0 for eigval in eigenvalues):
         return "Positive definite"
-    elif positive_eigenvalues + zero_eigenvalues == matrix.shape[0]:
+    elif all(eigval >= 0 for eigval in eigenvalues):
         return "Positive semi-definite"
-    elif positive_eigenvalues == 0:
+    elif all(eigval < 0 for eigval in eigenvalues):
         return "Negative definite"
-    elif positive_eigenvalues == 1:
-        return "Indefinite"
-    else:
+    elif all(eigval <= 0 for eigval in eigenvalues):
         return "Negative semi-definite"
+    else:
+        return "Indefinite"
