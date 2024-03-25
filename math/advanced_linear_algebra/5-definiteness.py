@@ -24,15 +24,18 @@ def definiteness(matrix):
     if matrix.ndim != 2 or matrix.shape[0] != matrix.shape[1]:
         return None
 
+    if not np.allclose(matrix, matrix.T):
+        return None  # Not symmetric
+
     eigenvalues, _ = np.linalg.eig(matrix)
 
-    if all(eigval > 0 for eigval in eigenvalues):
+    if np.all(eigenvalues > 0):
         return "Positive definite"
-    elif all(eigval >= 0 for eigval in eigenvalues):
+    elif np.all(eigenvalues >= 0):
         return "Positive semi-definite"
-    elif all(eigval < 0 for eigval in eigenvalues):
+    elif np.all(eigenvalues < 0):
         return "Negative definite"
-    elif all(eigval <= 0 for eigval in eigenvalues):
+    elif np.all(eigenvalues <= 0):
         return "Negative semi-definite"
     else:
         return "Indefinite"
