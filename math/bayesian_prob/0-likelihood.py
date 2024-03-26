@@ -38,8 +38,8 @@ def likelihood(x, n, P):
         raise TypeError("P must be a 1D numpy.ndarray")
     if (P < 0).any() or (P > 1).any():
         raise ValueError("All values in P must be in the range [0, 1]")
-    
-    prob = []
-
-    prob = np.math.comb(n, x) * P**x * (1 - P)**(n - x)
-    return prob
+    # Calculate likelihood for each probability in P
+    likelihoods = np.zeros_like(P)
+    for i, prob in enumerate(P):
+        likelihoods[i] = np.math.comb(n, x) * prob**x * (1 - prob)**(n - x)
+    return likelihoods
