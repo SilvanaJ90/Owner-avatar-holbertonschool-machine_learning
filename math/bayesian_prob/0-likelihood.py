@@ -27,7 +27,9 @@ def likelihood(x, n, P):
     Returns: a 1D numpy.ndarray containing the likelihood of obtaining the data
     x and n, for each probability in P, respectively
     """
-    if not isinstance(n, int) and n < 0:
+    if not isinstance(n, int):
+        raise ValueError("n must be a positive integer")
+    ir n < 0:
         raise ValueError("n must be a positive integer")
     if not isinstance(x, int) or x < 0:
         raise ValueError(
