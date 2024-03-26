@@ -39,7 +39,7 @@ def likelihood(x, n, P):
         raise TypeError("P must be a 1D numpy.ndarray")
     if (P < 0).any() or (P > 1).any():
         raise ValueError("All values in P must be in the range [0, 1]")
-    
+
     cb = comb(n, x)
-    prob =  cb * P**x * (1 - P)**(n - x)
+    prob =  cb * P**x*(1 - P)**(n - x)
     return prob
