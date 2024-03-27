@@ -1,14 +1,14 @@
 # Bayesian Probability
 
 
-# Learning Objectives
+## Learning Objectives
     What is Bayesian Probability?
     What is Bayes’ rule and how do you use it?
     What is a base rate?
     What is a prior?
     What is a posterior?
     What is a likelihood?
-# Requirements
+## Requirements
     General
     Allowed editors: vi, vim, emacs
     All your files will be interpreted/compiled on Ubuntu 16.04 LTS using python3 (version 3.5)
