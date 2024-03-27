@@ -26,10 +26,10 @@
 
 
 
-    [imagen1]!(https://github.com/SilvanaJ90/holbertonschool-machine_learning/blob/main/math/bayesian_prob/img/Likelihood.png)
+    ![imagen1](https://github.com/SilvanaJ90/holbertonschool-machine_learning/blob/main/math/bayesian_prob/img/Likelihood.png)
 
-    [imagen1]!(https://github.com/SilvanaJ90/holbertonschool-machine_learning/blob/main/math/bayesian_prob/img/Intersection.png)
+    ![imagen1](https://github.com/SilvanaJ90/holbertonschool-machine_learning/blob/main/math/bayesian_prob/img/Intersection.png)
 
-    [imagen1]!(https://github.com/SilvanaJ90/holbertonschool-machine_learning/blob/main/math/bayesian_prob/img/marginal.png)
+    ![imagen1](https://github.com/SilvanaJ90/holbertonschool-machine_learning/blob/main/math/bayesian_prob/img/marginal.png)
 
-    [imagen1]!(https://github.com/SilvanaJ90/holbertonschool-machine_learning/blob/main/math/bayesian_prob/img/posterior.png)
+    ![imagen1](https://github.com/SilvanaJ90/holbertonschool-machine_learning/blob/main/math/bayesian_prob/img/posterior.png)
