@@ -67,3 +67,7 @@ def intersection(x, n, P, Pr):
         raise ValueError("All values in Pr must be in the range [0, 1]")
     if not np.isclose(np.sum(Pr), 1):
         raise ValueError("Pr must sum to 1")
+    # Calculate the intersection for each probability in P
+    inters = np.minimum(P, Pr) ** x * (1 - np.minimum(P, Pr)) ** (n - x)
+
+    return inters
