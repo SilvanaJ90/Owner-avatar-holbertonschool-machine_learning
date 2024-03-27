@@ -6,6 +6,7 @@ import numpy as np
 from scipy.special import comb
 
 
+
 def likelihood(x, n, P):
     """
     Arg:
