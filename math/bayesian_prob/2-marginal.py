@@ -27,3 +27,8 @@ def marginal(x, n, P, Pr):
             "All values in Pr must be in the range [0, 1]")
     if not np.isclose(np.sum(Pr), 1):
         raise ValueError("Pr must sum to 1")
+
+    #M=∑x=0nintersection(x,n,P,Pr)
+    inters = intersection(x, n, P, Pr)
+    M = np.sum(inters)
+    return M
