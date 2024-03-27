@@ -52,12 +52,15 @@ def intersection(x, n, P, Pr):
     if not isinstance(n, int) or n <= 0:
         raise ValueError("n must be a positive integer")
     if not isinstance(x, int) or x < 0:
-        raise ValueError("x must be an integer that is greater than or equal to 0")
+        raise ValueError(
+            "x must be an integer that is greater than or equal to 0")
     if x > n:
         raise ValueError("x cannot be greater than n")
     if not isinstance(P, np.ndarray) or P.ndim != 1: 
         raise TypeError("P must be a 1D numpy.ndarray")
     if not isinstance(Pr, np.ndarray) or P.shape[0]:
         raise TypeError("Pr must be a numpy.ndarray with the same shape as P")
-    if (P < 0).any() or (P > 1).any() or (Pr < 0).any() or (Pr > 1).any():
+    if (P < 0).any() or (P > 1).any():
+        raise ValueError("All values in {P} must be in the range [0, 1] where {P} is the incorrect variable")
+    if (Pr < 0).any() or (Pr > 1).any():
         raise ValueError("All values in {P} must be in the range [0, 1] where {P} is the incorrect variable")
