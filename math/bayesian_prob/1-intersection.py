@@ -68,6 +68,5 @@ def intersection(x, n, P, Pr):
     if not np.isclose(np.sum(Pr), 1):
         raise ValueError("Pr must sum to 1")
 
-    intersections = P**x * (1 - P)**(n - x) * Pr
-   
+    intersections = likelihood(x, n, P) * Pr
     return intersections
