@@ -25,11 +25,18 @@
     The length of your files will be tested using wc
 
 
+### The following formulas are used
+
+
+### Likelihood
 
 ![This is an image](https://github.com/SilvanaJ90/holbertonschool-machine_learning/blob/main/math/bayesian_prob/img/Likelihood.png)
 
+### Intersection
 ![This is an image](https://github.com/SilvanaJ90/holbertonschool-machine_learning/blob/main/math/bayesian_prob/img/Intersection.png)
 
+### Marginal
 ![This is an image](https://github.com/SilvanaJ90/holbertonschool-machine_learning/blob/main/math/bayesian_prob/img/marginal.png)
 
+### Posterior
 ![This is an image](https://github.com/SilvanaJ90/holbertonschool-machine_learning/blob/main/math/bayesian_prob/img/posterior.png)
