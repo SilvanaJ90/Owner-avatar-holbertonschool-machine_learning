@@ -45,3 +45,13 @@ Projects:
 [0x13_transfer_learning](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/supervised_learning/transfer_learning)
 
 [0x14_object_detection](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/supervised_learning/object_detection)
+
+[0x15_neural_style_transfer](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/supervised_learning/neural_style_transfer)
+
+[0x16_advanced_linear_algebra](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/math/advanced_linear_algebra)
+
+[0x17_multivariate_prob](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/math/multivariate_prob)
+
+[0x18_bayesian_prob](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/math/bayesian_prob)
+
+[0x19_dimensionality_reduction](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/math/dimensionality_reduction)
