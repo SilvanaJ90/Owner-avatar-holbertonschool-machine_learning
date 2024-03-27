@@ -35,7 +35,7 @@
 ### Intersection
 ![This is an image](https://github.com/SilvanaJ90/holbertonschool-machine_learning/blob/main/math/bayesian_prob/img/Intersection.png)
 
-### Marginal
+### Marginal
 ![This is an image](https://github.com/SilvanaJ90/holbertonschool-machine_learning/blob/main/math/bayesian_prob/img/marginal.png)
 
 ### Posterior
