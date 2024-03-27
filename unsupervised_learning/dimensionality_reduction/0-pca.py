@@ -3,4 +3,4 @@ import numpy as np
 
 
 def pca(X, var=0.95):
-    """ Doc ""
+    """ Doc """
