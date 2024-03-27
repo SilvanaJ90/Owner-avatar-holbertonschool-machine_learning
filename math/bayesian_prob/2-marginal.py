@@ -22,9 +22,9 @@ def marginal(x, n, P, Pr):
     if not isinstance(Pr, np.ndarray) or Pr.shape != P.shape:
         raise TypeError("Pr must be a numpy.ndarray with the same shape as P")
     #If any value in P or Pr is not in the range [0, 1]
-    if (P < 0).any() or (P > 1).any.():
+    if (P < 0).any() or (P > 1).any():
         raise ValueError("All values in P must be in the range [0, 1]")
-    if (Pr < 0).any() or (Pr > 1).any.():
+    if (Pr < 0).any() or (Pr > 1).any():
         raise ValueError("All values in Pr must be in the range [0, 1]")
     #If Pr does not sum to 1
     if not np.isclose(np.sum(Pr), 1):
