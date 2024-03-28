@@ -3,5 +3,5 @@
 import numpy as np
 
 
-def pca(X, var=0.95):
+def pca(X, ndim):
     """ Doc """
