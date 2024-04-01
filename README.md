@@ -55,3 +55,5 @@ Projects:
 [0x18_bayesian_prob](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/math/bayesian_prob)
 
 [0x19_dimensionality_reduction](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/unsupervised_learning/dimensionality_reduction)
+
+[0x20_dimensionality_reduction](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/unsupervised_learning/clustering)
