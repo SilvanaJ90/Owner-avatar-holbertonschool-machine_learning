@@ -56,4 +56,4 @@ Projects:
 
 [0x19_dimensionality_reduction](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/unsupervised_learning/dimensionality_reduction)
 
-[0x20_dimensionality_reduction](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/unsupervised_learning/clustering)
+[0x20_clustering](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/unsupervised_learning/clustering)
