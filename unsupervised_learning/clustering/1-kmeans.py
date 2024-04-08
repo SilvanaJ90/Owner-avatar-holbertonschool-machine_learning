@@ -5,7 +5,7 @@ import numpy as np
 
 def initialize(X, k):
     """
-    that initializes cluster centroids for K-means
+    that initializes cluster centroids K-means
     """
     if not isinstance(X, np.ndarray) or len(X.shape) != 2:
         return None
@@ -31,7 +31,7 @@ def kmeans(X, k, iterations=1000):
 
     Returns:
         C: numpy.ndarray of shape (k, d) containing
-        the centroid means for each cluster
+        the centroid means each cluster
         clss: numpy.ndarray of shape (n,) containing the index
         of the cluster each data point belongs to
     """
@@ -53,7 +53,7 @@ def kmeans(X, k, iterations=1000):
                     np.min(X, axis=0), np.max(
                         X, axis=0)) for i in range(k)])
 
-        # Check for convergence
+
         if np.array_equal(C, new_C):
             break
 
