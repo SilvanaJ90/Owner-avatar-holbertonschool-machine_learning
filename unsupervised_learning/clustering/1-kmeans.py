@@ -48,11 +48,18 @@ def kmeans(X, k, iterations=1000):
     if n == 0:
         return None, None
 
+    # Convert iterations to integer if it's a string
+    try:
+        iterations = int(iterations)
+    except ValueError:
+        print("Warning: iterations parameter should be an integer. Defaulting to 1000.")
+        iterations = 1000
+
     # Initialize centroids
     C = initialize(X, k)
     clss = np.zeros(n)
 
-    for i in range(iterations):
+    for _ in range(iterations):
         # Assign each data point to the nearest centroid
         distances = np.sqrt(((X[:, np.newaxis, :] - C) ** 2).sum(axis=2))
         clss = np.argmin(distances, axis=1)
