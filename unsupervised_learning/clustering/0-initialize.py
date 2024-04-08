@@ -7,7 +7,9 @@ def initialize(X, k):
     """
     that initializes cluster centroids for K-means
     """
-    if not isinstance(X, np.ndarray) or len(X.shape) != 2 or not isinstance(k, int) or k <= 0:
+    if not isinstance(X, np.ndarray) or len(X.shape) != 2:
+        return None
+    if not isinstance(k, int) or k <= 0:
         return None
 
     min_vals = np.min(X, axis=0)
