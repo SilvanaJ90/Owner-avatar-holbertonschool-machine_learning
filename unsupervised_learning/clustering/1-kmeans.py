@@ -2,14 +2,10 @@
 """ Doc """
 
 import numpy as np
-from scipy.spatial.distance import cdist
-from typing import Tuple
 initialize = __import__('0-initialize').initialize
 
 
-def kmeans(
-        X: np.ndarray, k: int,
-        iterations: int = 1000) -> Tuple[np.ndarray, np.ndarray]:
+def kmeans(X, k, iterations=1000):
     """
     Performs K-means clustering on a dataset.
 
@@ -29,13 +25,11 @@ def kmeans(
 
     # Initialize centroids
     C = initialize(X, k)
-
-    # Initialize clusters
     clss = np.zeros(n)
 
     for _ in range(iterations):
         # Assign each data point to the nearest centroid
-        distances = cdist(X, C, 'euclidean')
+        distances = np.sqrt(((X[:, np.newaxis, :] - C)**2).sum(axis=2))
         clss = np.argmin(distances, axis=1)
 
         # Update centroids
