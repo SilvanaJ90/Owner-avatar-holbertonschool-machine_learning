@@ -52,7 +52,7 @@ def kmeans(X, k, iterations=1000):
     C = initialize(X, k)
     clss = np.zeros(n)
 
-    for _ in range(iterations):
+    for i in range(iterations):
         # Assign each data point to the nearest centroid
         distances = np.sqrt(((X[:, np.newaxis, :] - C) ** 2).sum(axis=2))
         clss = np.argmin(distances, axis=1)
