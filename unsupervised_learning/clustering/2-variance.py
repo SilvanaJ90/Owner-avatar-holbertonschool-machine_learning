@@ -15,6 +15,8 @@ def variance(X, C):
         var is the total variance
 
     """
+    if not isinstance(X, np.ndarray) or not isinstance(C, np.ndarray):
+        return None
     if len(X.shape) != 2 or len(C.shape) != 2:
         return None
 
