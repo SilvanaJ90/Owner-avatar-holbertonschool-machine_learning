@@ -19,6 +19,8 @@ def variance(X, C):
         return None
     if len(X.shape) != 2 or len(C.shape) != 2:
         return None
+    if (C.shape[1]) != (X.shape[1]):
+        return None
 
     n, d = X.shape
     k, _ = C.shape
