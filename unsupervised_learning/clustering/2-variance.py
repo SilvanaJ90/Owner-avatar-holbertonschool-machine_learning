@@ -19,7 +19,7 @@ def variance(X, C):
         return None
 
     n, d = X.shape
-    k, d = C.shape
+    k, _ = C.shape
 
     distances = np.linalg.norm(X[:, np.newaxis, :] - C, axis=2)**2
     nearest_centroid_indices = np.argmin(distances, axis=1)
