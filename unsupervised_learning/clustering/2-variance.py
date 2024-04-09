@@ -23,10 +23,9 @@ def variance(X, C):
         return None
 
     n, d = X.shape
-    k, _ = C.shape
+    k, d = C.shape
 
     distances = np.linalg.norm(X[:, np.newaxis, :] - C, axis=2)**2
-    nearest_centroid_indices = np.argmin(distances, axis=1)
     var = np.sum(np.min(distances, axis=1))
 
     return var
