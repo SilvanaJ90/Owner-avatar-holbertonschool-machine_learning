@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ Performs K-means on a dataset: """
-from sklearn.cluster import KMeans
+import sklearn.cluster
 import numpy as np
 
 def kmeans(X, k):
