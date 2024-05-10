@@ -28,4 +28,5 @@ def gmm(X, k):
         gmm_model_test.fit(X)
         bic.append(gmm_model_test.bic(X))
 
+    # Devolver los resultados esperados
     return pi, m, S, clss, bic
