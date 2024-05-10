@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
 """ Doc """
 import numpy as np
-initialize = __import__('0-initialize').initialize
 
 
 def kmeans(X, k, iterations=1000):
-    """Doc"""
     n, d = X.shape
 
     # Inicializar los centroides de los clusters
-    C = initialize(X, k)
-
-    if C is None:
-        return None, None
+    min_vals = np.min(X, axis=0)
+    max_vals = np.max(X, axis=0)
+    C = np.random.uniform(low=min_vals, high=max_vals, size=(k, d))
 
     # Inicializar las asignaciones de cluster
     clss = np.zeros(n, dtype=int)
@@ -32,5 +29,9 @@ def kmeans(X, k, iterations=1000):
             break
 
         C = new_C
+
+    # Verificar si algún cluster está vacío
+    if np.any([np.sum(clss == i) == 0 for i in range(k)]):
+        return None, None
 
     return C, clss
