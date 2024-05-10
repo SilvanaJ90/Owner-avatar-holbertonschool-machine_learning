@@ -28,4 +28,4 @@ def gmm(X, k):
         gmm_model_test.fit(X)
         bic.append(gmm_model_test.bic(X))
 
-    return pi, m, S, clss, (bic)
+    return pi, m, S, clss, bic
