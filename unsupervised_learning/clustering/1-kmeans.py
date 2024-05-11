@@ -6,9 +6,9 @@ import numpy as np
 def kmeans(X, k, iterations=1000):
     """ Doc """
     if not isinstance(X, np.ndarray) or len(X.shape) != 2:
-        return None
+        return None, None
     if not isinstance(k, int) or k <= 0:
-        return None
+        return None, None
     n, d = X.shape
 
     # Inicializar los centroides de los clusters
@@ -21,22 +21,22 @@ def kmeans(X, k, iterations=1000):
         return None, None
 
     for i in range(iterations):
-        # Asignación de Puntos a los Centroides más Cercanos: dist(p,q)=i=1∑d​(pi​−qi​)2
+        # Asignación de Puntos a los Centroides más Cercanos
         distances = np.linalg.norm(X[:, np.newaxis] - centroids, axis=2)
         clss = np.argmin(distances, axis=1)
 
-        C = np.array([X[clss == c].mean(axis=0) for c in range(k)])
-
-        C = np.array([X[clss == c].mean(axis=0) if np.sum(clss == c) > 0 else np.random.uniform(
-            np.min(X, axis=0), np.max(X, axis=0)) for c in range(k)])
-        
+        # Actualización de los centroides
+        C = np.zeros((k, d))
         for c in range(k):
-            if X[clss == c].size == 0:
+            if np.sum(clss == c) > 0:
+                C[c] = X[clss == c].mean(axis=0)
+            else:
                 C[c] = np.random.uniform(min_vals, max_vals, size=(1, d))
 
-
+        # Comprobación de Convergencia
         if np.array_equal(centroids, C):
             break
 
+        centroids = np.copy(C)
 
     return centroids, clss
