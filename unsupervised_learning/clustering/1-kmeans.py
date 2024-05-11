@@ -25,6 +25,10 @@ def kmeans(X, k, iterations=1000):
         distances = np.linalg.norm(X[:, np.newaxis] - centroids, axis=2)
         clss = np.argmin(distances, axis=1)
 
+        C = np.array([X[clss == c].mean(axis=0) if np.sum(clss == c) > 0 else np.random.uniform(
+            np.min(X, axis=0), np.max(X, axis=0)) for c in range(k)])
+
+        centroids = C
         # Actualización de los centroides
         C = np.zeros((k, d))
         for c in range(k):
