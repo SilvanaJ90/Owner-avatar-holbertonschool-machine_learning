@@ -11,9 +11,10 @@ def initialize(X, k):
         return None
     if not isinstance(k, int) or k <= 0:
         return None
-
+    
+    n, d = X.shape
     min_vals = np.min(X, axis=0)
     max_vals = np.max(X, axis=0)
-    centroids = np.random.uniform(min_vals, max_vals, size=(k, X.shape[1]))
+    centroids = np.random.uniform(min_vals, max_vals, size=(k, d))
 
     return centroids
