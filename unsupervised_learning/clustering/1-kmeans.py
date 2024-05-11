@@ -9,6 +9,8 @@ def kmeans(X, k, iterations=1000):
         return None, None
     if not isinstance(k, int) or k <= 0:
         return None, None
+    if not isinstance(iterations, int) or iterations <= 0:
+        return None, None
     n, d = X.shape
 
     # Inicializar los centroides de los clusters
@@ -20,30 +22,23 @@ def kmeans(X, k, iterations=1000):
     if centroids is None:
         return None, None
 
-    # Loop per the maximum number of iterations
     for i in range(iterations):
+        # Asignación de Puntos a los Centroides más Cercanos
+        distances = np.linalg.norm(X[:, np.newaxis] - centroids, axis=2)
+        clss = np.argmin(distances, axis=1)
 
-        # initializes k centroids by selecting them from the data points
-        centroids = np.copy(centroids)
-        centroids_extended = centroids[:, np.newaxis]
-
-        # distances also know as euclidean distance
-        distances = np.sqrt(((X - centroids_extended) ** 2).sum(axis=2))
-        # an array containing the index to the nearest centroid per each point
-        clss = np.argmin(distances, axis=0)
-
-        # Assign all points to the nearest centroid
+        # Actualización de los centroides
+        C = np.zeros((k, d))
         for c in range(k):
-            if X[clss == c].size == 0:
-                centroids[c] = np.random.uniform(min_vals, max_vals, size=(1, d))
+            if np.sum(clss == c) > 0:
+                C[c] = X[clss == c].mean(axis=0)
             else:
-                centroids[c] = X[clss == c].mean(axis=0)
+                C[c] = np.random.uniform(min_vals, max_vals, size=(1, d))
 
-        centroids_extended = centroids[:, np.newaxis]
-        distances = np.sqrt(((X - centroids_extended) ** 2).sum(axis=2))
-        clss = np.argmin(distances, axis=0)
-
-        if (centroids == centroids).all():
+        # Comprobación de Convergencia
+        if np.array_equal(centroids, C):
             break
+
+        centroids = np.copy(C)
 
     return centroids, clss
