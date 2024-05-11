@@ -32,6 +32,8 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
         var.append(var_value)
 
     d0 = var[0]
-    d_vars = [d0 - v for v in var]
+    d_vars = []
+    for v in var:
+        d_vars.append(d0 - v)
 
     return results, d_vars
