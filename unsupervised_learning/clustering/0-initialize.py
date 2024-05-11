@@ -11,7 +11,7 @@ def initialize(X, k):
         return None
     if not isinstance(k, int) or k <= 0:
         return None
-    
+
     n, d = X.shape
     min_vals = np.min(X, axis=0)
     max_vals = np.max(X, axis=0)
