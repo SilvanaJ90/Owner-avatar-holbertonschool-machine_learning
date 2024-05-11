@@ -38,7 +38,6 @@ def kmeans(X, k, iterations=1000):
         # Comprobación de Convergencia
         if np.array_equal(centroids, C):
             break
-
         centroids = np.copy(C)
 
     return centroids, clss
