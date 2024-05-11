@@ -19,7 +19,7 @@ def kmeans(X, k, iterations=1000):
 
     centroids = np.random.uniform(min_vals, max_vals, size=(k, d))
 
-    if centroids is None:
+    if centroids.shape != (k, d):
         return None, None
 
     for i in range(iterations):
