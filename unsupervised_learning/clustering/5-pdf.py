@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-""" that calculates the probability density function of a Gaussian distribution """
+""" that calculates the probability density
+    function of a Gaussian distribution
+"""
 import numpy as np
 
 
