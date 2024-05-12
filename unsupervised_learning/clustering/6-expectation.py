@@ -21,16 +21,18 @@ def expectation(X, pi, m, S):
         the posterior probabilities for each data point in each cluster
         l is the total log likelihood
     """
-    if type(X) is not np.ndarray or X.ndim != 2:
+    if not isinstance(X, np.ndarray) or X.ndim != 2:
         return None, None
-    if type(pi) is not np.ndarray or pi.ndim != 1:
+    if not isinstance(pi, np.ndarray) or pi.ndim != 1 or np.abs(np.sum(pi) - 1) > 1e-10:
         return None, None
-    if type(m) is not np.ndarray or m.ndim != 2:
+    if not isinstance(m, np.ndarray) or m.ndim != 2:
         return None, None
-    if type(S) is not np.ndarray or S.ndim != 3:
+    if not isinstance(S, np.ndarray) or S.ndim != 3:
         return None, None
+
     n, d = X.shape
     k = pi.shape[0]
+
     if m.shape != (k, d) or S.shape != (k, d, d):
         return None, None
 
@@ -45,6 +47,6 @@ def expectation(X, pi, m, S):
     g /= g_sum
 
     # Calculate total log likelihood
-    log = np.sum(np.log(g_sum))
+    total_log_likelihood = np.sum(np.log(g_sum))
 
-    return g, log
+    return g, total_log_likelihood
