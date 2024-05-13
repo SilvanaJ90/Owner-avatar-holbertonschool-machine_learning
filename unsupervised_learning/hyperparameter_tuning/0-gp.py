@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 import numpy as np
+""" Class GaussianProcess"""
 
 
 class GaussianProcess:
+    """ Class GaussianProcess"""
     def __init__(self, X_init, Y_init, l=1, sigma_f=1):
         """ that represents a noiseless 1D Gaussian process: """
         self.X = X_init
