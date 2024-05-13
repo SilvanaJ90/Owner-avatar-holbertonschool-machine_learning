@@ -59,3 +59,7 @@ Projects:
 [0x20_clustering](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/unsupervised_learning/clustering)
 
 [0x21_hidden_markov_models](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/unsupervised_learning/hmm)
+
+[0x22_hyperparameter_tuning](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/unsupervised_learning/hyperparameter_tuning)
+
+
