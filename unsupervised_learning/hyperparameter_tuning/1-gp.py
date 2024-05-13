@@ -22,8 +22,18 @@ class GaussianProcess:
 
     def predict(self, X_s):
         """
-            that predicts the mean and standard deviation
-            of points in a Gaussian process:
+        Predicts the mean and standard deviation
+        of points in a Gaussian process.
+
+        X_s: numpy.ndarray of shape (s, 1) containing all of the points
+        whose mean and standard deviation should be calculated.
+        s: is the number of sample points.
+
+        Returns:
+            mu: numpy.ndarray of shape (s,) containing the
+            mean for each point in X_s.
+            sigma: numpy.ndarray of shape (s,) containing the
+            variance for each point in X_s.
         """
         K_s = self.kernel(X_s, X_s)
         K = self.K
