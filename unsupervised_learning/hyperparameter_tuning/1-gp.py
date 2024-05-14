@@ -16,9 +16,8 @@ class GaussianProcess:
 
     def kernel(self, X1, X2):
         """ Calculates the covariance kernel matrix between two matrices """
-        sqdist = np.sum(X1**2, 1).reshape(-1, 1) \
-            + np.sum(X2**2, 1) - 2 * np.dot(X1, X2.T)
-        return self.sigma_f**2 * np.exp(-0.5 / self.l**2 * sqdist)
+        k = (self.sigma_f**2) * np.exp(np.square(X1 - X2.T) / - (2 * (self.l ** 2)))
+        return k
 
     def predict(self, X_s):
         """
@@ -35,10 +34,8 @@ class GaussianProcess:
             sigma: numpy.ndarray of shape (s,) containing the
             variance for each point in X_s.
         """
-        K_s = self.kernel(X_s, X_s)
-        K = self.K
-        K_inv = np.linalg.inv(K)
-        K_s_X = self.kernel(X_s, self.X)
-        mu = np.dot(K_s_X, np.dot(K_inv, self.Y)).flatten()
-        sigma = np.sqrt(np.diag(K_s - np.dot(K_s_X, np.dot(K_inv, K_s_X.T))))
+        K_s = self.kernel(self.X, X_s)
+        K_inv = np.linalg.inv(self.K)
+        mu = np.matmul(np.matmul(K_s.T, K_inv), self.Y).reshape(-1)
+        sigma = self.sigma_f**2 - np.sum(np.matmul(K_s.T, K_inv).T * K_s, axis=0)
         return mu, sigma
