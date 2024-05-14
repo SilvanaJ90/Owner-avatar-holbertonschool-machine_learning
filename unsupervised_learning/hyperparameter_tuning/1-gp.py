@@ -16,7 +16,8 @@ class GaussianProcess:
 
     def kernel(self, X1, X2):
         """ Calculates the covariance kernel matrix between two matrices """
-        k = (self.sigma_f**2) * np.exp(np.square(X1 - X2.T) / - (2 * (self.l ** 2)))
+        k = (self.sigma_f**2) * np.exp(
+            np.square(X1 - X2.T) / - (2 * (self.l ** 2)))
         return k
 
     def predict(self, X_s):
@@ -37,5 +38,6 @@ class GaussianProcess:
         K_s = self.kernel(self.X, X_s)
         K_inv = np.linalg.inv(self.K)
         mu = np.matmul(np.matmul(K_s.T, K_inv), self.Y).reshape(-1)
-        sigma = self.sigma_f**2 - np.sum(np.matmul(K_s.T, K_inv).T * K_s, axis=0)
+        sigma = self.sigma_f**2 - np.sum(
+            np.matmul(K_s.T, K_inv).T * K_s, axis=0)
         return mu, sigma
