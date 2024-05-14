@@ -43,7 +43,7 @@ class GaussianProcess:
         return mu, sigma
 
     def update(self, X_new, Y_new):
-        """ 
+        """
         That updates a Gaussian Process:
         X_new is a numpy.ndarray of shape (1,)
         that represents the new sample point
@@ -52,6 +52,6 @@ class GaussianProcess:
         Updates the public instance attributes X, Y, and K
         """
 
-        self.X = np.vstack([self.X, X_new])
-        self.Y = np.vstack([self.Y, Y_new])
+        self.X = np.row_stack((self.X, X_new))
+        self.Y = np.row_stack((self.Y, Y_new))
         self.K = self.kernel(self.X, self.X)
