@@ -62,4 +62,6 @@ Projects:
 
 [0x22_hyperparameter_tuning](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/unsupervised_learning/hyperparameter_tuning)
 
+[0x23_autoencoders](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/unsupervised_learning/autoencoders)
+
 
