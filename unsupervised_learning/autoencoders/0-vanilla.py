@@ -25,9 +25,9 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     x = encoder_input
     for nodes in hidden_layers:
         x = keras.layers.Dense(nodes, activation='relu')(x)
-    
+
     encoder_output = keras.layers.Dense(latent_dims, activation='relu')(x)
-    
+
     encoder = keras.models.Model(encoder_input, encoder_output, name='encoder')
 
     # Decoder
