@@ -19,28 +19,30 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     and binary cross-entropy loss
     All layers should use a relu activation except for the last layer
     in the decoder, which should use sigmoid
-"""
+    """
     # Encoder
-    encoder_input = layers.Input(shape=(input_dims,))
+    encoder_input = keras.layers.Input(shape=(input_dims,))
     x = encoder_input
     for nodes in hidden_layers:
-        x = layers.Dense(nodes, activation='relu')(x)
-    encoder_output = layers.Dense(latent_dims, activation='relu')(x)
-    encoder = models.Model(encoder_input, encoder_output, name='encoder')
+        x = keras.layers.Dense(nodes, activation='relu')(x)
+    
+    encoder_output = keras.layers.Dense(latent_dims, activation='relu')(x)
+    
+    encoder = keras.models.Model(encoder_input, encoder_output, name='encoder')
 
     # Decoder
-    decoder_input = layers.Input(shape=(latent_dims,))
+    decoder_input = keras.layers.Input(shape=(latent_dims,))
     x = decoder_input
     for nodes in reversed(hidden_layers):
-        x = layers.Dense(nodes, activation='relu')(x)
-    decoder_output = layers.Dense(input_dims, activation='sigmoid')(x)
-    decoder = models.Model(decoder_input, decoder_output, name='decoder')
+        x = keras.layers.Dense(nodes, activation='relu')(x)
+    decoder_output = keras.layers.Dense(input_dims, activation='sigmoid')(x)
+    decoder = keras.models.Model(decoder_input, decoder_output, name='decoder')
 
     # Autoencoder
     autoencoder_input = encoder_input
     encoded = encoder(autoencoder_input)
     decoded = decoder(encoded)
-    auto = models.Model(autoencoder_input, decoded, name='autoencoder')
+    auto = keras.models.Model(autoencoder_input, decoded, name='autoencoder')
 
     # Compile the autoencoder
     auto.compile(optimizer='adam', loss='binary_crossentropy')
