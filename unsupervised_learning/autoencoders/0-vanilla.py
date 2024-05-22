@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """ creates an autoencoder: """
-
-import tensorflow as tf
-from tensorflow.keras import layers, models
+import tensorflow.keras as keras
 
 
 def autoencoder(input_dims, hidden_layers, latent_dims):
