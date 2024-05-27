@@ -31,49 +31,49 @@ def autoencoder(input_dims, filters, latent_dims):
     and binary cross-entropy loss
 
     """
+    # Encoder
     input_layer = keras.layers.Input(shape=input_dims)
-    encoded = input_layer
+    x = input_layer
 
     for num_filters in filters:
-        encoded = keras.layers.Conv2D(
-            num_filters, (3, 3), padding='same', activation='relu')(encoded)
-        encoded = keras.layers.MaxPooling2D((2, 2), padding='same')(encoded)
+        x = keras.layers.Conv2D(
+            num_filters, (3, 3), padding='same', activation='relu')(x)
+        x = keras.layers.MaxPooling2D((2, 2), padding='same')(x)
 
-    # Latent space
-    shape_before_flattening = encoded.shape[1:]
-    encoded = keras.layers.Flatten()(encoded)
-    encoded = keras.layers.Dense(tf.reduce_prod(latent_dims))(encoded)
-    encoded = keras.layers.Reshape(latent_dims)(encoded)
+    shape_before_flattening = x.shape[1:]
+    x = keras.layers.Flatten()(x)
+    x = keras.layers.Dense(units=tf.reduce_prod(latent_dims))(x)
+    encoded_output = keras.layers.Reshape(latent_dims)(x)
 
-    encoder = keras.models.Model(input_layer, encoded)
+    encoder = keras.models.Model(input_layer, encoded_output)
 
     # Decoder
     decoded_input = keras.layers.Input(shape=latent_dims)
-    decoded = decoded_input
+    x = decoded_input
 
-    decoded = keras.layers.Flatten()(decoded)
-    decoded = keras.layers.Dense(
-        tf.reduce_prod(shape_before_flattening))(decoded)
-    decoded = keras.layers.Reshape(shape_before_flattening)(decoded)
+    x = keras.layers.Flatten()(x)
+    x = keras.layers.Dense(
+        units=tf.reduce_prod(shape_before_flattening))(x)
+    x = keras.layers.Reshape(shape_before_flattening)(x)
 
     for num_filters in reversed(filters[:-1]):
-        decoded = keras.layers.Conv2D(
-            num_filters, (3, 3), padding='same', activation='relu')(decoded)
-        decoded = keras.layers.UpSampling2D((2, 2))(decoded)
+        x = keras.layers.Conv2D(
+            num_filters, (3, 3), padding='same', activation='relu')(x)
+        x = keras.layers.UpSampling2D((2, 2))(x)
 
-    decoded = keras.layers.Conv2D(
-        filters[-1], (3, 3), padding='valid', activation='relu')(decoded)
-    decoded = keras.layers.Conv2D(
-        input_dims[-1], (3, 3), activation='sigmoid', padding='same')(decoded)
+    x = keras.layers.Conv2D(
+        filters[-1], (3, 3), padding='valid', activation='relu')(x)
+    decoded_output = keras.layers.Conv2D(
+        input_dims[-1], (3, 3), padding='same', activation='sigmoid')(x)
 
-    decoder = keras.models.Model(decoded_input, decoded)
+    decoder = keras.models.Model(decoded_input, decoded_output)
 
     # Autoencoder
     auto_input = input_layer
-    encoded_output = encoder(auto_input)
-    decoded_output = decoder(encoded_output)
+    encoded = encoder(auto_input)
+    decoded = decoder(encoded)
 
-    auto = keras.models.Model(auto_input, decoded_output)
+    auto = keras.models.Model(auto_input, decoded)
 
     # Compile the autoencoder model
     auto.compile(optimizer='adam', loss='binary_crossentropy')
