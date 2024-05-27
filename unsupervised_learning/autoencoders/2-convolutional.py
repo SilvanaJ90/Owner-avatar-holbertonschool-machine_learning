@@ -31,8 +31,8 @@ def autoencoder(input_dims, filters, latent_dims):
     and binary cross-entropy loss
 
     """
-    input_layers = keras.layers.Input(shape=input_dims)
-    x = input_layers
+    encoded_input = keras.layers.Input(shape=input_dims)
+    x = encoded_input
     for num_filters in filters:
         x = keras.layers.Conv2D(
             num_filters, (3, 3), padding='same', activation='relu')(x)
@@ -56,10 +56,10 @@ def autoencoder(input_dims, filters, latent_dims):
         input_dims[-1], (3, 3), activation='sigmoid', padding='same')(x)
 
 
-    encoder = keras.Models(input=input_layers, outputs=encoded_output)
-    decoder = keras.Models(input=decoded_input, outputs=decoded_output)
+    encoder = keras.Models(inputs=encoded_input, outputs=encoded_output)
+    decoder = keras.Models(inputs=decoded_input, outputs=decoded_output)
     # Autoencoder
-    auto = keras.models.Model(input=input_layers, outputs=decoder(encoder(input_layers)))
+    auto = keras.models.Model(inputs=encoded_input, outputs=decoder(encoder(encoded_input)))
 
     # Compile the autoencoder model
     auto.compile(optimizer='adam', loss='binary_crossentropy')
