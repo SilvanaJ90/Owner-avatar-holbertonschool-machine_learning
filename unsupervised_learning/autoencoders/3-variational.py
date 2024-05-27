@@ -45,15 +45,17 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     layers in the encoder, which should use None, and the
     last layer in the decoder, which should use sigmoid
     """
-        # Encoder
+    # Encoder
     inputs = keras.layers.Input(shape=(input_dims,))
     x = inputs
     for nodes in hidden_layers:
         x = keras.layers.Dense(nodes, activation='relu')(x)
     z_mean = keras.layers.Dense(latent_dims, activation=None)(x)
     z_log_var = keras.layers.Dense(latent_dims, activation=None)(x)
-    z = keras.layers.Lambda(sampling, output_shape=(latent_dims,))([z_mean, z_log_var])
-    encoder = keras.models.Model(inputs, [z, z_mean, z_log_var], name='encoder')
+    z = keras.layers.Lambda(
+        sampling, output_shape=(latent_dims,))([z_mean, z_log_var])
+    encoder = keras.models.Model
+    (inputs, [z, z_mean, z_log_var], name='encoder')
 
     # Decoder
     latent_inputs = keras.layers.Input(shape=(latent_dims,))
@@ -75,7 +77,7 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     kl_loss *= -0.5
     vae_loss = tf.reduce_mean(reconstruction_loss + kl_loss)
     auto.add_loss(vae_loss)
-    
+
     # Compile the model
     auto.compile(optimizer='adam')
 
