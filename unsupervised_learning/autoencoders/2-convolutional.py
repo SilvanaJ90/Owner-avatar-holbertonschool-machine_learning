@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """  that creates a convolutional autoencoder """
-import tensorflow as tf
 import tensorflow.keras as keras
 
 
