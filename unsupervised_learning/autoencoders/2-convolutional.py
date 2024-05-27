@@ -42,8 +42,6 @@ def autoencoder(input_dims, filters, latent_dims):
     # Latent space
     encoded_output = x
 
-    encoder = keras.models.Model(input_layer, encoded_output)
-
     # Decoder
     decoded_input = keras.layers.Input(shape=latent_dims)
     x = decoded_input
@@ -58,8 +56,9 @@ def autoencoder(input_dims, filters, latent_dims):
     decoded_output = keras.layers.Conv2D(
         input_dims[-1], (3, 3), activation='sigmoid', padding='same')(x)
 
-    decoder = keras.models.Model(decoded_input, decoded_output)
 
+    encoder = keras.Models(input_layer, encoded_output)
+    decoder = keras.Models(decoded_input, decoded_output)
     # Autoencoder
     auto_input = input_layer
     encoded_output = encoder(auto_input)
