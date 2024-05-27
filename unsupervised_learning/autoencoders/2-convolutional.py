@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """  that creates a convolutional autoencoder """
+import tensorflow as tf
+import tensorflow.keras as keras
 
 
 def autoencoder(input_dims, filters, latent_dims):
@@ -30,3 +32,51 @@ def autoencoder(input_dims, filters, latent_dims):
     and binary cross-entropy loss
 
     """
+    input_layer = keras.layers.Input(shape=input_dims)
+    encoded = input_layer
+
+    for num_filters in filters:
+        encoded = keras.layers.Conv2D(
+            num_filters, (3, 3), padding='same', activation='relu')(encoded)
+        encoded = keras.layers.MaxPooling2D((2, 2), padding='same')(encoded)
+
+    # Latent space
+    shape_before_flattening = encoded.shape[1:]
+    encoded = keras.layers.Flatten()(encoded)
+    encoded = keras.layers.Dense(tf.reduce_prod(latent_dims))(encoded)
+    encoded = keras.layers.Reshape(latent_dims)(encoded)
+
+    encoder = keras.models.Model(input_layer, encoded)
+
+    # Decoder
+    decoded_input = keras.layers.Input(shape=latent_dims)
+    decoded = decoded_input
+
+    decoded = keras.layers.Flatten()(decoded)
+    decoded = keras.layers.Dense(
+        tf.reduce_prod(shape_before_flattening))(decoded)
+    decoded = keras.layers.Reshape(shape_before_flattening)(decoded)
+
+    for num_filters in reversed(filters[:-1]):
+        decoded = keras.layers.Conv2D(
+            num_filters, (3, 3), padding='same', activation='relu')(decoded)
+        decoded = keras.layers.UpSampling2D((2, 2))(decoded)
+
+    decoded = keras.layers.Conv2D(
+        filters[-1], (3, 3), padding='valid', activation='relu')(decoded)
+    decoded = keras.layers.Conv2D(
+        input_dims[-1], (3, 3), activation='sigmoid', padding='same')(decoded)
+
+    decoder = keras.models.Model(decoded_input, decoded)
+
+    # Autoencoder
+    auto_input = input_layer
+    encoded_output = encoder(auto_input)
+    decoded_output = decoder(encoded_output)
+
+    auto = keras.models.Model(auto_input, decoded_output)
+
+    # Compile the autoencoder model
+    auto.compile(optimizer='adam', loss='binary_crossentropy')
+
+    return encoder, decoder, auto
