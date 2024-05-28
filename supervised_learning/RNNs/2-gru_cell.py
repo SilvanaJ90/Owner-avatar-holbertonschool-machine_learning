@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
+""" class GRUCell """
 import numpy as np
 
 
 class GRUCell:
-    """represents a gated recurrent unit """
+    """ represents a gated recurrent unit """
 
     def __init__(self, i, h, o):
         """
