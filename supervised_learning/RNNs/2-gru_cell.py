@@ -8,7 +8,6 @@ class GRUCell:
 
     def __init__(self, i, h, o):
         """
-
         i is the dimensionality of the data
         h is the dimensionality of the hidden state
         o is the dimensionality of the outputs
@@ -75,8 +74,10 @@ class GRUCell:
         return h_next, y
 
     def sigmoid(self, x):
+        """ func sigmoid """
         return 1 / (1 + np.exp(-x))
 
     def softmax(self, x):
+        """ fuct act softmax"""
         exp_x = np.exp(x - np.max(x, axis=1, keepdims=True))
         return exp_x / np.sum(exp_x, axis=1, keepdims=True)
