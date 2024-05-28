@@ -33,11 +33,13 @@ class RNNCell:
                 h_next is the next hidden state
                 y is the output of the cell
         """
-        # Concatenate h_prev and x_t
+        # Concatenate h_prev and x_t hprev,xt]
         h_x_concat = np.concatenate((h_prev, x_t), axis=1)
-        # Compute the next hidden state
+
+        # Compute the next hidden state hnext​=tanh(Wh⋅[hprev​,xt​]+bh)
         h_next = np.tanh(np.dot(h_x_concat, self.Wh) + self.bh)
-        # Compute the cell output
+
+        # Compute the cell output y=softmax(Wy⋅hnext​+by).
         y_linear = np.dot(h_next, self.Wy) + self.by
         y = self.softmax(y_linear)
         return h_next, y
