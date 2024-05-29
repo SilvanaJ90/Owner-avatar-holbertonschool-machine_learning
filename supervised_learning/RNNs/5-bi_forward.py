@@ -3,6 +3,7 @@ import numpy as np
 
 
 class BidirectionalCell:
+    """ Clas BidirectionalCell:"""
     def __init__(self, i, h, o):
         """
         Initialize the bidirectional cell
@@ -18,7 +19,7 @@ class BidirectionalCell:
         self.bhf = np.zeros((1, h))
         self.bhb = np.zeros((1, h))
         self.by = np.zeros((1, o))
-    
+
     def forward(self, h_prev, x_t):
         """
         Calculate the hidden state in the forward
