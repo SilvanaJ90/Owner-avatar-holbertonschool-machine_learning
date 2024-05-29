@@ -39,7 +39,6 @@ class BidirectionalCell:
         h_next = np.tanh(np.dot(h_x, self.Whf) + self.bhf)
         return h_next
 
-
     def backward(self, h_next, x_t):
         """
         x_t is a numpy.ndarray of shape (m, i)
