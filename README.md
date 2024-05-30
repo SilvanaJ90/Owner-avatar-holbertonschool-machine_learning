@@ -66,4 +66,6 @@ Projects:
 
 [0x24_RNNs](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/supervised_learning/RNNs)
 
+[0x25_time_series](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/supervised_learning/time_series)
+
 
