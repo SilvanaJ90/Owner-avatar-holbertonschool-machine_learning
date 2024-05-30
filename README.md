@@ -64,4 +64,6 @@ Projects:
 
 [0x23_autoencoders](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/unsupervised_learning/autoencoders)
 
+[0x24_RNNs](https://github.com/SilvanaJ90/holbertonschool-machine_learning/tree/main/supervised_learning/RNNs)
+
 
